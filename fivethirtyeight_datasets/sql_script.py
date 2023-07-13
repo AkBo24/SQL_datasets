@@ -18,7 +18,7 @@ def main():
     try:
         df = pd.read_csv(argv[0], encoding = "ISO-8859-1")
         os.chdir(argv[1])
-        conn = sql.connect('database.db')
+        conn = sql.connect('classic-rock-song-list.db')
         df.to_sql('Database', if_exists='replace', con=conn)
     except Exception as e:
         raise e
@@ -30,7 +30,7 @@ def main():
     x = 0
     for row in cur.execute('SELECT * FROM Database'):
         print(row, end='\n\n')
-        if x >5:
+        if x >5 :
             break
         x += 1
 
