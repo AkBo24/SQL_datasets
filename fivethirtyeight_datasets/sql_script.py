@@ -6,7 +6,8 @@ def main():
     """
         Usage
             - arg 1: relative directory to csv
-            - arg 2: relative direcotry to create db
+            - arg 2: relative directory to create db
+            - arg 3: name for database
     """
 
     
@@ -18,7 +19,7 @@ def main():
     try:
         df = pd.read_csv(argv[0], encoding = "ISO-8859-1")
         os.chdir(argv[1])
-        conn = sql.connect('classic-rock-song-list.db')
+        conn = sql.connect(str(argv[2]))
         df.to_sql('Database', if_exists='replace', con=conn)
     except Exception as e:
         raise e
